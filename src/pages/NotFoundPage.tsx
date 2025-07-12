@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import testGirl from '../assets/test.jpg';
+import { mediaQueries } from '../config/responsive';
 
 const NotFoundDiv = styled.div`
     display: flex;
@@ -9,28 +10,38 @@ const NotFoundDiv = styled.div`
     height: 90vh;
     width: 100%;
     color: black;
-
-
     background-image: url(${testGirl});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    //opacity: 0.1;
-    //position: fixed;
-    //top: 0;
-    //left: 0;
-    //right: 0;
-    //bottom: 0;
-    //z-index: -1;
-`;
+    padding: 2vh;
 
+    ${mediaQueries.mobile} {
+        height: 80vh;
+        padding: 1vh;
+    }
+
+    h1 {
+        ${mediaQueries.mobile} {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+    }
+
+    p {
+        ${mediaQueries.mobile} {
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    }
+`;
 const NotFoundPage = () => {
     return (
         <NotFoundDiv>
             <h1>404 - Not Found!</h1>
-            <br/>
+            <br />
             <p>Sorry, the page you are looking for does not exist.</p>
-            <p>Go back to the <a href="/" style={{color: "yellow"}}>homepage</a>.</p>
+            <p>Go back to the <a href="/" style={{ color: "yellow" }}>homepage</a>.</p>
         </NotFoundDiv>
     );
 };

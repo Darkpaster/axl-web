@@ -1,32 +1,34 @@
 import styled from "styled-components";
-import { useRef } from "react";
+import TopBar from "./TopBar.tsx";
+import { mediaQueries } from '../config/responsive';
 
 const MainDiv = styled.div`
-max-width: 50vw;
-min-width: 30vw;
-min-height: 1.5em;
-background-color: black;
-position: relative;
-border-radius: 5px;
-resize: vertical;
-overflow-y: auto;
-`
+    background-color: #1E1F22;
+    width: 100%;
+    min-height: 1.5em;
+    position: relative;
+    border-radius: 5px;
+    overflow-y: auto;
+    border-left: #feb4fe 1px solid;
+
+    ${mediaQueries.tablet} {
+        min-height: 30vh;
+        border-left: none;
+        border-top: #feb4fe 1px solid;
+    }
+`;
+
+const ConsoleBody = styled.div`
+    padding-left: 1dvi;
+`;
 
 export default function Console() {
-    const consoleRef = useRef(null);
-    const handleTouchMove = (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-        // const { clientY } = event.touches[0];
-        // const { top, height } = consoleRef.current.getBoundingClientRect();
-        // const newHeight = clientY - top;
-        // const newHeight = event.touches[0].clientY - consoleRef.current.getBoundingClientRect().top;
-        // consoleRef.current.style.height = `${newHeight}px`;
-    }
-    return ( 
-        <MainDiv onTouchMove={handleTouchMove} ref={consoleRef}>
-            <div className="console-body">
+    return (
+        <MainDiv>
+            <TopBar title={"Console"} />
+            <ConsoleBody>
                 <p>Hello World!</p>
-            </div>
+            </ConsoleBody>
         </MainDiv>
-    )
+    );
 }

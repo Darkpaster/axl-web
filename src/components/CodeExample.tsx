@@ -1,34 +1,42 @@
 import React from "react";
-import Button from "./Button.tsx";
 import styled from "styled-components";
-const CodeBarDiv = styled.div`
-    height: 3dvi;
-    background-color: #2f2f2f;
-    margin-right: 2dvi;
-    margin-left: 2dvi;
-    margin-top: 5dvi;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-`
+import TopBar from "./TopBar.tsx";
+import { mediaQueries } from '../config/responsive';
+
 const CodeDiv = styled.div`
     font-size: large;
     padding: 2dvi;
-    margin-right: 2dvi;
-    margin-left: 2dvi;
     color: white;
     background-color: #2c2c2c;
+    overflow-x: auto;
+
+    ${mediaQueries.mobile} {
+        font-size: medium;
+        padding: 1dvi;
+    }
 `;
-const CodeExample = ( {children}: {children: React.ReactNode} ) => {
+
+const CodeExampleWrapper = styled.div`
+    margin-right: 2dvi;
+    margin-left: 2dvi;
+    margin-top: 5dvi;
+
+    ${mediaQueries.mobile} {
+        margin-right: 1dvi;
+        margin-left: 1dvi;
+        margin-top: 3dvi;
+    }
+`;
+
+
+const CodeExample = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div>
-            <CodeBarDiv>
-                <Button>run</Button>
-            </CodeBarDiv>
+        <CodeExampleWrapper>
+            <TopBar buttons={["Run"]} />
             <CodeDiv>
                 {children}
             </CodeDiv>
-        </div>
+        </CodeExampleWrapper>
     );
 };
 
